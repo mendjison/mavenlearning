@@ -7,14 +7,77 @@
     <groupId>com.itech</groupId>
     <artifactId>mavenlearning</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <!-- ===== Informations générales ===== -->
+    <name>mavenlearning</name>
+    <description>
+        La super application qui sert à faire ceci/cela...
+    </description>
+    <url>https://itech.progress.com/mavenlearning</url>
+
+    <!-- ===== Organisation ===== -->
+    <organization>
+        <name>itech progress </name>
+        <url>https://itech.progress.com</url>
+    </organization>
+
+    <!-- ===== Licences ===== -->
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+    </licenses>
 
     <properties>
-        <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <maven.compiler.source>{{java.version}}</maven.compiler.source>
-        <maven.compiler.targets>{{java.version}}</maven.compiler.targets>
+        <java.version>1.8</java.version>
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
     </properties>
 
+    <build>
+        <directory>${project.basedir}/target</directory>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.1.0</version>
+                <configuration>
+                    <archive>
+                        <!-- Création du Manifest pour la définition de la classe Main -->
+                        <manifest>
+                            <mainClass>controller.Test</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
 
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-clean-plugin</artifactId>
+                <version>3.1.0</version>
+                <executions>
+                    <execution>
+                        <id>auto-clean</id>
+                        <phase>initialize</phase>
+                        <goals>
+                            <goal>clean</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-site-plugin</artifactId>
+                <version>3.7.1</version>
+            </plugin>
+        </plugins>
+    </build>
 </project>
